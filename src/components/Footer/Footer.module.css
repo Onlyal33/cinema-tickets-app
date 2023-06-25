@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 38px;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+
+  background: var(--gray-1);
+}
+
+.text {
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--white);
+}

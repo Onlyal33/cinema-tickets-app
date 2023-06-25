@@ -1,0 +1,130 @@
+.container {
+  display: inline-flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  border-radius: 8px;
+  background: var(--white, #fff);
+
+  position: absolute;
+  height: 168px;
+  width: 344px;
+  top: calc(50vh - 84px);
+  left: calc(50% - 172px);
+  box-sizing: border-box;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.headerContainer {
+  display: flex;
+  width: 296px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  color: var(--text-primary, #1b1f23);
+  font-size: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+  line-height: 20px;
+
+  margin: 0;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.content {
+  color: var(--text-primary, #1b1f23);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.btnGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.btnYes {
+  display: flex;
+  height: 40px;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 8px;
+  background: var(--orange, #f50);
+  border: 0px;
+}
+
+.btnYes:hover, .btnYes:focus {
+  background: var(--orange-hover, #e94e00);
+}
+
+.btnNo {
+  display: flex;
+  height: 40px;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 8px;
+  border: 1px solid var(--orange, #f50);
+}
+
+.btnNo:hover, .btnNo:focus {
+  border: 1px solid var(--orange-hover, #e94e00);
+}
+
+.btnYesText {
+  color: var(--button-primary-text-icon, #fff);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.btnNoText {
+  color: var(--orange, #f50);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btnClose {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  border: 0;
+  background: transparent;
+
+  width: 16px;
+  height: 16px;
+}

@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+
+  border: 0;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.iconActive {
+  color: var(--orange);
+}
+
+.iconDisabled {
+  color: var(--orange-disabled);
+}
+
+.iconActive:hover,
+.iconActive:focus {
+  color: var(--orange-hover);
+}
+
+.counter {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+
+  color: var(--text-primary);
+}
+
+.btnSize {
+  width: 20px;
+  height: 20px;
+}
+
+.modalSize {
+  width: 16px;
+  height: 16px;
+}

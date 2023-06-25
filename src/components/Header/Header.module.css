@@ -1,0 +1,59 @@
+.container {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  width: 100%;
+  padding-top: var(--padding-top);
+  padding-bottom: var(--padding-bottom);
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+
+  background: var(--gray-1);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  color: var(--white);
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.cartContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ticketsCountContainer {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  box-sizing: border-box;
+
+  border-radius: 8px;
+  background: var(--orange, #f50);
+}
+
+.ticketsCounter {
+  color: var(--white, #fff);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.cart {
+  height: 32px;
+}
