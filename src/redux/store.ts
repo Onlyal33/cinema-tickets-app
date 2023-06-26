@@ -1,18 +1,27 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { movieApi } from "./services/movieApi";
-import { cartReducer } from "./features/cart";
+import { configureStore } from '@reduxjs/toolkit';
+import { cartReducer } from './features/cart';
+import { cinemaApi } from './services/cinemaApi';
+import { movieApi } from './services/movieApi';
+import { reviewApi } from './services/reviewApi';
+import { filtersReducer } from './features/filters';
 
 export const store = configureStore({
   reducer: {
+    [cinemaApi.reducerPath]: cinemaApi.reducer,
     [movieApi.reducerPath]: movieApi.reducer,
+    [reviewApi.reducerPath]: reviewApi.reducer,
     cart: cartReducer,
+    filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([movieApi.middleware]),
-  devTools: process.env.NODE_ENV !== "production",
+    getDefaultMiddleware().concat([
+      cinemaApi.middleware,
+      movieApi.middleware,
+      reviewApi.middleware,
+    ]),
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

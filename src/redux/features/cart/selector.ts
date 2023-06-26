@@ -11,6 +11,9 @@ export const selectTotalAmount = (state: RootState) =>
 export const selectPositiveAmountsAndIds = (state: RootState) =>
   Object.entries(selectCartModule(state)).filter(([, value]) => value > 0);
 
+export const selectIdsWithPositiveAmount = (state: RootState) =>
+  selectPositiveAmountsAndIds(state).map(([key]) => key);
+
 export const selectIsDecrementEnabled = (state: RootState, id: string) =>
   selectProductAmount(state, id) > 0;
 

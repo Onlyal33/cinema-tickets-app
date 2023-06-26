@@ -1,5 +1,5 @@
-import styles from './page.module.css';
 import Accordion from '@/components/Accordion/Accordion';
+import styles from './page.module.css';
 
 const questions = [
   {

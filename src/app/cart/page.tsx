@@ -1,12 +1,13 @@
 'use client';
+import Movies from '@/components/Movies/Movies';
 import TotalTickets from '@/components/TotalTickets/TotalTickets';
+
 import styles from './page.module.css';
-import MoviesList from '@/components/MoviesList/MoviesList';
 
 export default function CartPage() {
   return (
     <div className={styles.container}>
-      <MoviesList type="cart" />
+      <Movies type="cart" />
       <div className={styles.cartContainer}>
         <div className={styles.cartContainer2}>
           <div className={styles.cartContainer3}>

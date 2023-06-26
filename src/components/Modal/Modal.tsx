@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';

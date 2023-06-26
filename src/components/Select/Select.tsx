@@ -1,31 +1,36 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import styles from './Select.module.css';
-import { createPortal } from 'react-dom';
+
 import classNames from 'classnames';
-import DropdownItem from './DropdownItem';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import styles from './Select.module.css';
 
 interface Option {
-  title: string;
-  value: string;
+  id: string | undefined;
+  name: string;
+  movieIds: string[];
 }
 
 interface SelectProps {
-  selected: Option | null;
+  selected: Option | undefined;
   options: Option[];
   placeholder: string;
   status?: 'default' | 'invalid';
-  onChange?: (selected: Option['value']) => void;
+  onChange: (selected: Option['id']) => void;
   onClose?: () => void;
 }
 
+interface DropdownItemProps {
+  id: string | undefined;
+  name: string;
+  onClick: (id: Option['id']) => void;
+}
+
 export default function Select({
-  options = [
-    { title: 'qrs', value: 'qrsssss' },
-    { title: 'qrspppp', value: 'qrsppppppp' },
-  ],
-  placeholder = 'Выберите жанр',
+  options,
+  placeholder,
   status = 'default',
   selected,
   onChange,
@@ -56,11 +61,6 @@ export default function Select({
 
     const handleScroll = () => {
       if (isOpen) {
-        /* const bounds = rootRef.current.getBoundingClientRect();
-        setPosition({
-          x: bounds.left,
-          y: bounds.top + bounds.height + 4 - window.scrollY,
-        }); */
         setIsOpen(false);
         setPosition(null);
       }
@@ -75,9 +75,9 @@ export default function Select({
     };
   }, [isOpen, onClose]);
 
-  const handleOptionClick = (value: Option['value']) => {
+  const handleOptionClick = (id: Option['id']) => {
     setIsOpen(false);
-    onChange?.(value);
+    onChange?.(id);
   };
 
   const handlePlaceHolderClick = () => {
@@ -91,58 +91,89 @@ export default function Select({
     setIsOpen(!isOpen);
   };
 
-  const dropdownContainer = document.getElementById('dropdown-container');
-
   return (
     <div className={styles.container} ref={rootRef} data-is-active={isOpen}>
       <label className={styles.label}>Жанр</label>
       <div
         className={classNames(styles.placeholder, isOpen && styles.active)}
         data-status={status}
-        data-selected={!!selected?.value}
         onClick={handlePlaceHolderClick}
         role="button"
       >
-        {selected?.title || placeholder}
-        {isOpen ? (
-          <Image
-            src="/arrowUpLight.svg"
-            alt="Arrow Up Icon"
-            width={20}
-            height={20}
-          />
-        ) : (
-          <Image
-            src="/arrowDownLight.svg"
-            alt="Arrow Down Icon"
-            className={styles.iconColor}
-            width={20}
-            height={20}
-          />
-        )}
+        {selected?.name || placeholder}
+
+        <Image
+          src={isOpen ? '/arrowUpLight.svg' : '/arrowDownLight.svg'}
+          alt={isOpen ? 'Arrow Up Icon' : 'Arrow Down Icon'}
+          width={20}
+          height={20}
+        />
       </div>
-      {isOpen &&
-        dropdownContainer &&
-        createPortal(
-          <ul
-            style={{
-              top: position?.y,
-              left: position?.x,
-              position: 'fixed',
-              paddingTop: 4,
-            }}
-            className={styles.dropdownContainer}
-          >
-            {options.map((option) => (
-              <DropdownItem
-                key={option.value}
-                option={option}
-                onClick={handleOptionClick}
-              />
-            ))}
-          </ul>,
-          dropdownContainer
-        )}
+      {isOpen && (
+        <Select.Dropdown
+          options={options}
+          position={position}
+          onClick={handleOptionClick}
+        />
+      )}
     </div>
   );
 }
+
+Select.Dropdown = function Dropdown({
+  options,
+  position,
+  onClick,
+}: {
+  options: Option[];
+  position: {
+    x: number;
+    y: number;
+  } | null;
+  onClick: (id: Option['id']) => void;
+}) {
+  const dropdownContainer = document.getElementById('dropdown-container');
+
+  return (
+    dropdownContainer &&
+    createPortal(
+      <ul
+        style={{
+          top: position?.y,
+          left: position?.x,
+          position: 'fixed',
+          paddingTop: 4,
+        }}
+        className={styles.dropdownContainer}
+      >
+        <Select.DropdownItem
+          key="null"
+          id={undefined}
+          name="Не выбран"
+          onClick={onClick}
+        />
+        {options.map((option) => (
+          <Select.DropdownItem
+            key={option.id}
+            id={option.id}
+            name={option.name}
+            onClick={onClick}
+          />
+        ))}
+      </ul>,
+      dropdownContainer
+    )
+  );
+};
+
+Select.DropdownItem = function DropdownItem({
+  id,
+  name,
+  onClick,
+}: DropdownItemProps) {
+  return (
+    <li className={styles.dropdownItem} value={id} onClick={() => onClick(id)}>
+      {name}
+    </li>
+  );
+};
