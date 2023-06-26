@@ -1,12 +1,15 @@
 'use client';
-import Link from 'next/link';
-import styles from './Header.module.css';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import TotalTickets from '../TotalTickets/TotalTickets';
+
+import styles from './Header.module.css';
 
 export default function Header() {
   const pathname = usePathname();
-  const ticketsCounter = 1;
+
   return (
     <header className={styles.container}>
       {pathname !== '/' ? (
@@ -17,19 +20,9 @@ export default function Header() {
         <div className={styles.text}>Билетопоиск</div>
       )}
       <div className={styles.cartContainer}>
-        {ticketsCounter > 0 && (
-          <div className={styles.ticketsCountContainer}>
-            <span className={styles.ticketsCounter}>{ticketsCounter}</span>
-          </div>
-        )}
+        <TotalTickets formatted={true}/>
         <Link className={styles.cart} href="/cart">
-          <Image
-
-            src="/cart.svg"
-            alt="Cart Icon"
-            width={32}
-            height={32}
-          />
+          <Image src="/cart.svg" alt="Cart Icon" width={32} height={32} />
         </Link>
       </div>
     </header>

@@ -8,7 +8,7 @@
   border-radius: 8px;
   background: var(--white, #fff);
 
-  position: absolute;
+  position: fixed;
   height: 168px;
   width: 344px;
   top: calc(50vh - 84px);

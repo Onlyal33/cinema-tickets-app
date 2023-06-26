@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google';
 import LocalFont from 'next/font/local';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { StoreProvider } from '@/redux/StoreProvider';
 
 const roboto = Roboto({
   subsets: ['latin', 'cyrillic'],
@@ -15,7 +16,11 @@ const roboto = Roboto({
 const sfProText = LocalFont({
   src: [
     { path: './fonts/SFProText-Regular.ttf', weight: '400' },
-    { path: './fonts/SFProText-RegularItalic.ttf', weight: '400', style: 'italic' },
+    {
+      path: './fonts/SFProText-RegularItalic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
   ],
   variable: '--font-sfprotxt',
   display: 'swap',
@@ -34,14 +39,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={classNames(sfProText.variable, roboto.variable)}>
-        <div className="relative">
-          <div id="dropdown-container"></div>
-          <div id="backdrop-container"></div>
-          <div id="modal-container"></div>
-          <Header />
-          <main className="main">{children}</main>
-          <Footer />
-        </div>
+        <StoreProvider>
+          <div className="relative">
+            <div id="dropdown-container"></div>
+            <div id="backdrop-container"></div>
+            <div id="modal-container"></div>
+            <Header />
+            <main className="main">{children}</main>
+            <Footer />
+          </div>
+        </StoreProvider>
       </body>
     </html>
   );

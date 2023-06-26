@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ButtonsGroup from '../ButtonsGroup/ButtonsGroup';
+import TicketCountGroup from '../TicketCountGroup/TicketCountGroup';
 import { MovieInfo } from '../MovieCard/MovieCard';
 import styles from './MovieCompactCard.module.css';
 import Image from 'next/image';
@@ -19,7 +19,7 @@ export default function MovieCompactCard({
           <Link className={styles.movieName} href={`/movie/${id}`}>{title}</Link>
           <div className={styles.movieGenre}>{genre}</div>
         </div>
-        <ButtonsGroup id={id} type={type}/>
+        <TicketCountGroup id={id} type={type}/>
       </div>
     </div>
   );

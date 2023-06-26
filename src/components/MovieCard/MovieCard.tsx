@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import styles from './MovieCard.module.css';
-import ButtonsGroup from '../ButtonsGroup/ButtonsGroup';
 
+import TicketCountGroup from '../TicketCountGroup/TicketCountGroup';
+
+import styles from './MovieCard.module.css';
 export interface MovieInfo {
   title: string;
   posterUrl: string;
@@ -35,7 +36,7 @@ export default function MovieCard({
         <div className={styles.infoContainer}>
           <div className={styles.headerContainer}>
             <h2 className={styles.header}>{title}</h2>
-            <ButtonsGroup id={id}></ButtonsGroup>
+            <TicketCountGroup id={id} />
           </div>
           <div className={styles.detailsContainer}>
             <div className={styles.detail}>
