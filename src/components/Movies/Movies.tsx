@@ -16,6 +16,7 @@ import { MovieInfo, useGetMoviesQuery } from '@/redux/services/movieApi';
 
 import TicketCountGroup from '../TicketCountGroup/TicketCountGroup';
 import styles from './Movies.module.css';
+import { shallowEqual } from 'react-redux';
 
 interface MovieOptions {
   data: MovieInfo[];
@@ -53,7 +54,7 @@ const Movies = function Movies({
 };
 
 Movies.Cart = function MoviesCart({ data, type }: MovieOptions) {
-  const ids = useAppSelector(selectIdsWithPositiveAmount);
+  const ids = useAppSelector(selectIdsWithPositiveAmount, shallowEqual);
   const filteredMovies = data.filter(({ id }) => ids.includes(id));
   return <Movies.View data={filteredMovies} type={type} />;
 };
