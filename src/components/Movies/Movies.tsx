@@ -70,7 +70,7 @@ Movies.List = function MoviesList({ data, type }: MovieOptions) {
   }
 
   const filteredMovies = data
-    .filter((e) => title === '' || e.title.toLowerCase().includes(title))
+    .filter((e) => title === '' || e.title.toLowerCase().includes(title.toLowerCase()))
     .filter((e) => !genre || e.genre === genre)
     .filter(
       (e) =>
