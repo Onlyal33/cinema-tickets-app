@@ -24,11 +24,21 @@ interface MovieOptions {
 
 const Cover = dynamic(() => import('./Cover'));
 
-const Movies = function Movies({ type = 'list' }: { type?: MovieOptions['type'] }) {
+const Movies = function Movies({
+  type = 'list',
+}: {
+  type?: MovieOptions['type'];
+}) {
   const { data, isLoading, error } = useGetMoviesQuery(undefined);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <div className={styles.containerL}>
+        <div className={styles.containerL2}>
+          <div className={styles.movieName}>Загрузка...</div>
+        </div>
+      </div>
+    );
   }
 
   if (!data || error) {

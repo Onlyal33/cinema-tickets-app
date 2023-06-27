@@ -18,7 +18,7 @@ import styles from './Filters.module.css';
 
 interface ApiItem {
   id: string;
-  name: string;
+  name: string | undefined;
   movieIds: string[];
 }
 
@@ -55,40 +55,44 @@ Filters.Title = function TitleInput() {
 };
 
 Filters.Genre = function GenreSelect() {
-  const { data: movies } = useGetMoviesQuery(undefined);
+  const { data: movies, isLoading, error } = useGetMoviesQuery(undefined);
 
   const dispatch = useAppDispatch();
   const selected = useAppSelector(selectGenre);
 
-  if (!movies) {
-    return null;
+  if (error) {
+    return <span>Not Found</span>;
   }
 
-  const moviesByGenre: { [genre: string]: string[] } = movies.reduce(
-    (acc, { genre, id }) => {
-      if (!acc.hasOwnProperty(genre)) {
-        return { ...acc, [genre]: [id] };
-      }
-      const temp = acc[genre as keyof typeof acc];
-      return { ...acc, [genre]: [...temp, id] };
-    },
-    {}
-  );
+  let data: ApiItem[] = [];
 
-  const data: ApiItem[] = Object.entries(moviesByGenre).map(
-    ([id, movieIds]) => ({
-      id,
-      movieIds,
-      name: getGenreName(id),
-    })
-  );
+  if (movies !== undefined) {
+    const moviesByGenre: { [genre: string]: string[] } = movies?.reduce(
+      (acc, { genre, id }) => {
+        if (!acc.hasOwnProperty(genre)) {
+          return { ...acc, [genre]: [id] };
+        }
+        const temp = acc[genre as keyof typeof acc];
+        return { ...acc, [genre]: [...temp, id] };
+      },
+      {}
+    );
 
+    data = Object.entries(moviesByGenre).map(
+      ([id, movieIds]) => ({
+        id,
+        movieIds,
+        name: getGenreName(id),
+      })
+    );
+  }
   return (
     <Select
-      options={data}
+      options={movies === undefined ? [] : data}
       selected={data.find((e) => e.id === selected)}
       onChange={(id) => dispatch(filtersActions.setGenre(id))}
       placeholder="Выберите жанр"
+      label="Жанр"
     ></Select>
   );
 };
@@ -99,20 +103,19 @@ Filters.Cinema = function CinemaSelect() {
   const dispatch = useAppDispatch();
   const selected = useAppSelector(selectCinema);
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-
-  if (!data || error) {
+  if (error) {
     return <span>Not Found</span>;
   }
 
   return (
     <Select
-      options={data}
+      options={data === undefined ? [] : data}
       onChange={(id) => dispatch(filtersActions.setCinema(id))}
-      selected={data.find((e: { id: string | undefined }) => e.id === selected)}
+      selected={data?.find(
+        (e: { id: string | undefined }) => e.id === selected
+      )}
       placeholder="Выберите кинотеатр"
+      label="Кинотеатр"
     ></Select>
   );
 };

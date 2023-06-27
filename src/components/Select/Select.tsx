@@ -9,7 +9,7 @@ import styles from './Select.module.css';
 
 interface Option {
   id: string | undefined;
-  name: string;
+  name: string | undefined;
   movieIds: string[];
 }
 
@@ -17,6 +17,7 @@ interface SelectProps {
   selected: Option | undefined;
   options: Option[];
   placeholder: string;
+  label: string;
   status?: 'default' | 'invalid';
   onChange: (selected: Option['id']) => void;
   onClose?: () => void;
@@ -24,13 +25,14 @@ interface SelectProps {
 
 interface DropdownItemProps {
   id: string | undefined;
-  name: string;
+  name: string | undefined;
   onClick: (id: Option['id']) => void;
 }
 
 export default function Select({
   options,
   placeholder,
+  label,
   status = 'default',
   selected,
   onChange,
@@ -93,7 +95,7 @@ export default function Select({
 
   return (
     <div className={styles.container} ref={rootRef} data-is-active={isOpen}>
-      <label className={styles.label}>Жанр</label>
+      <label className={styles.label}>{label}</label>
       <div
         className={classNames(styles.placeholder, isOpen && styles.active)}
         data-status={status}

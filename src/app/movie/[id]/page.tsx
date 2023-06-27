@@ -9,7 +9,7 @@ function Reviews({ id }: { id: string }) {
   const { data, isLoading, error } = useGetReviewsByMovieQuery(id);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <span>Загрузка...</span>;
   }
 
   if (!data || error) {

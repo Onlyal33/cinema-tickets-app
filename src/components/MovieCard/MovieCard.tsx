@@ -40,7 +40,11 @@ export function MovieCardPreloaded({ id }: { id: string }) {
 export function MovieCardLoading({ id }: { id: string }) {
   const { data, isLoading, error } = useGetMovieQuery(id);
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <div className={styles.containerL}>
+        <div className={styles.header}>Загрузка...</div>
+      </div>
+    );
   }
 
   if (!data || error) {
