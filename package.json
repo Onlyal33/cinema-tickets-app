@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "simple-api:install": "cd simple_api && npm install",
+    "setup": "npm install && npm run simple-api:install",
+    "start:both": "concurrently \"npm run dev\" \"npm run simple-api\"",
+    "simple-api": "node simple_api/server.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -24,6 +28,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
+    "concurrently": "^8.2.1",
     "eslint": "^8.43.0",
     "eslint-plugin-react": "^7.32.2"
   }
