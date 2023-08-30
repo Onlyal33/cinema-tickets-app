@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"npm run simple-api\"",
     "build": "next build",
-    "start": "concurrently \"next start\" \"npm run simple-api\"",
+    "start": "concurrently \"npm run simple-api\" \"next start\"",
     "lint": "next lint",
     "simple-api:install": "cd simple_api && npm install",
     "setup": "npm install && npm run simple-api:install",
