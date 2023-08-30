@@ -1,7 +1,7 @@
 const express = require('express');
 const api = require('./api');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 3001;
+const port = process.env.API_PORT || 3001;
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = express();
