@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"npm run simple-api\"",
     "build": "next build",
-    "start": "concurrently \"npm run simple-api\" \"next start\"",
+    "start": "next start",
     "lint": "next lint",
     "simple-api:install": "cd simple_api && npm install",
     "setup": "npm install && npm run simple-api:install",
@@ -17,7 +17,6 @@
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
     "classnames": "^2.3.2",
-    "concurrently": "^8.2.1",
     "eslint-config-next": "13.4.7",
     "lodash": "^4.17.21",
     "next": "13.4.7",
@@ -28,6 +27,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.195",
+    "concurrently": "^8.2.1",
     "eslint": "^8.43.0",
     "eslint-plugin-react": "^7.32.2"
   }
