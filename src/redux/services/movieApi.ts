@@ -14,7 +14,7 @@ export interface MovieInfo {
 
 export const movieApi = createApi({
   reducerPath: 'movie',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
     getMovies: builder.query<MovieInfo[], undefined>({ query: () => 'movies' }),
     getMoviesByCinema: builder.query<MovieInfo[], string>({

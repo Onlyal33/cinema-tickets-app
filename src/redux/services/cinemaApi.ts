@@ -7,7 +7,7 @@ interface Cinema {
 
 export const cinemaApi = createApi({
   reducerPath: 'cinema',
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'api' }),
   endpoints: (builder) => ({
     getCinemas: builder.query<Cinema[], undefined>({ query: () => 'cinemas' }),
   }),
