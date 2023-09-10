@@ -1,7 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Project's page:
-https://cinema-tickets-app.onrender.com
+Project's [page](https://cinema-tickets-app-gamma.vercel.app/)
 
 ## Getting Started
 
