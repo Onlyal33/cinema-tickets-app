@@ -18,7 +18,7 @@
 .poster {
   object-fit: cover;
   border-radius: 8px;
-  background: url(), lightgray 50% / cover no-repeat; /* <path-to-image> */
+  background: lightgray 50%;
 }
 
 .dataContainer {
