@@ -1,6 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cinema Tickets App
 
-Project's [page](https://cinema-tickets-app-gamma.vercel.app/)
+A prototype of an app that enables user to browse movies currently showing in theaters, with options to filter selections by movie name, genre, and theater name. Additionally, users can add tickets to their cart for selected movies.
+
+Technology stack: TypeScript, React, Next.js, Redux Toolkit and RTK Query
+
+You can find project's site [here](https://cinema-tickets-app-gamma.vercel.app/)
 
 ## Getting Started
 
