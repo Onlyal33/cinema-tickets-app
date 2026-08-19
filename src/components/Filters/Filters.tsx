@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useGetCinemasQuery } from '@/redux/services/cinemaApi';
 import { useGetMoviesQuery } from '@/redux/services/movieApi';
 import getGenreName from '@/i18n/getGenreName';
@@ -37,15 +37,19 @@ Filters.Title = function TitleInput() {
   const selected = useAppSelector(selectTitle);
   const [value, setValue] = useState('');
 
-  const onChange = () => dispatch(filtersActions.setTitle(value));
+  const onChange = useCallback(
+    (nextValue: string) => dispatch(filtersActions.setTitle(nextValue)),
+    [dispatch]
+  );
 
   const debouncedOnChange = useDebounce(onChange);
 
   return (
     <Input
-      onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        debouncedOnChange();
-        setValue(target.value);
+      onChange={(event) => {
+        const nextValue = event.target.value;
+        debouncedOnChange(nextValue);
+        setValue(nextValue);
       }}
       label="Название"
       placeholder="Введите название"

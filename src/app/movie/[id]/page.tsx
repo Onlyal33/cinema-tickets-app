@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import MovieCard from '@/components/MovieCard/MovieCard';
 import ReviewCard, { ReviewInfo } from '@/components/ReviewCard/ReviewCard';
 import { useGetReviewsByMovieQuery } from '@/redux/services/reviewApi';
@@ -24,11 +25,17 @@ function Reviews({ id }: { id: string }) {
   );
 }
 
-export default function MoviePage({ params }: { params: { id: string } }) {
+export default function MoviePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = use(params);
+
   return (
     <div className={styles.container}>
-      <MovieCard id={params.id} />
-      <Reviews id={params.id} />
+      <MovieCard id={id} />
+      <Reviews id={id} />
     </div>
   );
 }

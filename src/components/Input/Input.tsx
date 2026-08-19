@@ -1,9 +1,10 @@
+import type { ChangeEventHandler } from 'react';
 import styles from './Input.module.css';
 
 type InputOptions = {
   label: string;
   placeholder: string;
-  onChange: any;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   value: string;
 };
 

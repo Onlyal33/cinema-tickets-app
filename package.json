@@ -6,29 +6,31 @@
     "dev": "concurrently \"next dev\" \"npm run simple-api\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "simple-api:install": "cd simple_api && npm install",
     "setup": "npm install && npm run simple-api:install",
     "simple-api": "node simple_api/server.js"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.5",
-    "@types/node": "^20.6.2",
-    "@types/react": "^18.2.22",
-    "@types/react-dom": "^18.2.7",
-    "classnames": "^2.3.2",
-    "eslint-config-next": "^13.5.1",
-    "lodash": "^4.17.21",
-    "next": "^13.5.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.1.2",
-    "typescript": "^5.2.2"
+    "@reduxjs/toolkit": "^2.12.0",
+    "classnames": "^2.5.1",
+    "lodash": "^4.18.1",
+    "next": "^16.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-redux": "^9.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.198",
-    "concurrently": "^8.2.1",
-    "eslint": "^8.49.0",
-    "eslint-plugin-react": "^7.33.2"
+    "@types/lodash": "^4.17.25",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "concurrently": "^9.2.4",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }
